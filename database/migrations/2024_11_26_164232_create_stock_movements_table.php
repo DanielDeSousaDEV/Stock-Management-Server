@@ -21,6 +21,7 @@ return new class extends Migration
                 'output',
                 'adjustment'
             ]);
+            $table->string('reason');
             $table->timestamps();
         });
     }
