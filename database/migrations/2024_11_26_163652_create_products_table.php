@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Categories;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->float('price', 2);
             $table->integer('quantity');
             $table->integer('minimum_quantity');
-            // $table->foreignIdFor(category);
+            $table->foreignIdFor(Categories::class);
             $table->timestamps();
         });
     }

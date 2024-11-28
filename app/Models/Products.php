@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Products extends Model
 {
@@ -13,4 +14,8 @@ class Products extends Model
         'quantity',
         'minimum_quantity',
     ];
+
+    public function category (): HasOne {
+        return $this->hasOne(Categories::class);
+    }
 }

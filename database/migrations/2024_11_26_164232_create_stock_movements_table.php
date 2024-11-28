@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Locations;
+use App\Models\Products;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('stock_movements', function (Blueprint $table) {
             $table->id();
-            // $table->foreignIdFor(product)
-            // $table->foreignIdFor(location)
+            $table->foreignIdFor(Products::class);
+            $table->foreignIdFor(Locations::class);
             $table->integer('quantity');
             $table->enum('type', [
                 'entry',
