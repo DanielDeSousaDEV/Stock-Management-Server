@@ -23,15 +23,24 @@ class DatabaseSeeder extends Seeder
 
         $Categories = Category::factory()->count(5)->create();
 
-        $Categories->for(function ($Category) {
-            Product::factory()->count(2)->create([
+        $Categories->map(function (Category $Category) {
+            $Products = Product::factory()->count(2)->create([
                 'category_id' => $Category->id
             ]);
+            // dd($Products);
+
+            $Locations = Location::factory()->count(2)->create();
+
+            $Locations->map(function (Location $Location, int $index) use($Products) {
+                StockMovement::factory()->count(2)->create([
+                    'product_id' => $Products[$index]->id,
+                    'location_id' => $Location->id
+                ]);
+                
+            });
         });
 
-        StockMovement::factory();
 
-        Location::factory()->count(3)->create();
 
     }
 }
