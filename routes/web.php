@@ -1,7 +1,16 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    // $var = Category::factory()
+    //                 ->hasProducts(['name'=>'adoado'])->make();
+
+    // $var = Product::factory()->forCategories(['name'=>'ado'])->make();
+
+    $var = Product::factory()->make();
+
+    return dd($var->category);
 });

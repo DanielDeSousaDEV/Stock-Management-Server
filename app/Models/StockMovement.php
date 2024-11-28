@@ -2,24 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class StockMovements extends Model
+class StockMovement extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'products_id',
-        'locations_id',
         'quantity',
         'type',
         'reason',
     ];
 
     protected function product (): HasOne {
-        return $this->hasOne(Products::class);
+        return $this->hasOne(Product::class);
     }
 
     protected function location (): HasOne {
-        return $this->hasOne(Locations::class);
+        return $this->hasOne(Location::class);
     }
 }

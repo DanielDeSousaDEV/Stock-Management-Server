@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Products;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +23,7 @@ class ProductFactory extends Factory
             'price' => fake()->randomFloat(2, 10, 40),
             'quantity' => fake()->numberBetween(30, 40),
             'minimum_quantity' => fake()->numberBetween(50, 60),
+            // 'category_id' => Category::factory()//nop
         ];
     }
 }
