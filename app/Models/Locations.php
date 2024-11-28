@@ -8,6 +8,13 @@ class Locations extends Model
 {
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'street_name',
+        'number',
+        'complement',
+        'neighborhood',
+        'state',
+        'city',
+        'CEP',
     ];
 }
