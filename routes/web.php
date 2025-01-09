@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -14,3 +15,5 @@ Route::get('/', function () {
 
     return dd($var->category);
 });
+
+// Route::apiResource('category', CategoryController::class);

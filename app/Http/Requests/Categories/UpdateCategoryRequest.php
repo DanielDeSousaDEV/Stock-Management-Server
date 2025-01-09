@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Http\Requests\categories;
+
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\ValidationException;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateCategoryRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'name' => 'nullable|string',
+            'description' => 'nullable|string'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.string' => 'O nome deve ser um texto',
+            'description.string' => 'A descrição deve ser um texto',
+        ];
+    }
+
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function failedValidation(Validator $validator)
+    {
+        // Personaliza a resposta JSON para erros de validação
+        throw new ValidationException($validator, response()->json([
+            'error' => true,
+            'message' => 'Erro de validação',
+            'errors' => $validator->errors(), // Mensagens de erro
+        ], 422));
+    }
+}
