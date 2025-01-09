@@ -23,7 +23,7 @@ return new class extends Migration
                 'output',
                 'adjustment'
             ]);
-            $table->string('reason');
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }
