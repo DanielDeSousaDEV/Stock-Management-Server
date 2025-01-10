@@ -21,7 +21,7 @@ class AuthenticationController extends Controller
             return response([
                 'error' => true,
                 'message' => 'Email ou senha invalidos'
-            ], 404);
+            ], 401);
         }
 
         if (Hash::check($validatedData['password'], $user->password)) {
@@ -35,7 +35,7 @@ class AuthenticationController extends Controller
             return response([
                 'error' => true,
                 'message' => 'Email ou senha invalidos'
-            ], 404);
+            ], 401);
         }
     }
 
@@ -52,7 +52,7 @@ class AuthenticationController extends Controller
             return response([
                 'error' => true,
                 'message' => $e->getMessage()
-            ], 404);
+            ], 400);
         }
     }
 }

@@ -14,6 +14,8 @@ class StockMovement extends Model
         'quantity',
         'type',
         'reason',
+        'product_id',
+        'location_id'
     ];
 
     protected function product (): HasOne {

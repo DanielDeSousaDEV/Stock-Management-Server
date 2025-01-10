@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Categories;
+namespace App\Http\Requests\StockMovements;
 
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class CreateCategoryRequest extends FormRequest
+class CreateStockMovements extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,11 @@ class CreateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'hex_color' => 'required|string|hex_color'
+            'quantity' => 'required|integer',
+            'type' => 'required|string|in:entry,output,adjustment',
+            'reason' => 'required|string',
+            'product_id' => 'required|integer',
+            'location_id' => 'required|integer',
         ];
     }
 
@@ -39,13 +40,17 @@ class CreateCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'O nome é obrigatorio',
-            'name.string' => 'O nome deve ser um texto',
-            'description.required' => 'A descrição é obrigatoria',
-            'description.string' => 'A descrição deve ser um texto',
-            'hex_color.required' => 'A cor é obrigatoria',
-            'hex_color.string' => 'A cor deve ser um texto',
-            'hex_color.hex_color' => 'A cor não possui um formato valido',
+            'quantity.required' => 'A quantidade é obrigatoria',
+            'quantity.integer' => 'A quantidade deve ser um número inteiro',
+            'type.required' => 'O tipo é obrigatorio',
+            'type.string' => 'O tipo deve ser um texto',
+            'type.in' => 'O tipo não é valido',
+            'reason.required' => 'A razão é obrigatoria',
+            'reason.string' => 'A razão deve ser um texto',
+            'product_id.required' => 'O produto é obrigatoria',
+            'product_id.integer' => 'O produto deve ser um número inteiro',
+            'location_id.required' => 'A localização é obrigatoria',
+            'location_id.integer' => 'A localização deve ser um número inteiro',
         ];
     }
 

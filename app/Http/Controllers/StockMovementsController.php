@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StockMovements\CreateStockMovements;
+use App\Models\StockMovement;
+use Exception;
 use Illuminate\Http\Request;
 
 class StockMovementsController extends Controller
@@ -11,23 +14,26 @@ class StockMovementsController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $allStockMovements = StockMovement::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return $allStockMovements;
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateStockMovements $request)
     {
-        //
+        try {
+            $createdStockMovement = StockMovement::create($request->validated());
+
+            return $createdStockMovement;
+        }catch (Exception $e) {
+            return response([
+                'error' => true,
+                'message' => $e->getMessage()
+            ], 404);
+        }
     }
 
     /**
@@ -35,30 +41,68 @@ class StockMovementsController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        $stockMovement = StockMovement::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        if (!filled($stockMovement)) {
+            return response([
+                'error' => true,
+                'message' => 'Movimentação do estoque não encontrada'
+            ], 404);
+        }
+
+        return $stockMovement;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    // public function update(CreateStockMovements $request, string $id)
+    // {
+    //     $dataForUpdate = $request->validated();
+
+    //     if (!filled($dataForUpdate)) {
+    //         return response([
+    //             'error' => true,
+    //             'message' => 'Não possui dados para atualizar'
+    //         ], 404);
+    //     }
+
+    //     $stockMovement = StockMovement::find($id);
+
+    //     if (!filled($stockMovement)) {
+    //         return response([
+    //             'error' => true,
+    //             'message' => 'Movimentação do estoque não encontrada'
+    //         ], 404);
+    //     }
+
+    //     $stockMovement->update($dataForUpdate);
+
+    //     return response([
+    //         'error' => false,
+    //         'message' => 'Movimentação do estoque atualizada com sucesso'
+    //     ], 200);;
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    // public function destroy(string $id)
+    // {
+    //     $stockMovement = StockMovement::find($id);
+
+    //     if (!filled($stockMovement)) {
+    //         return response([
+    //             'error' => true,
+    //             'message' => 'Movimentação do estoque não encontrada'
+    //         ], 404);
+    //     }
+
+    //     $stockMovement->delete();
+
+    //     return response([
+    //         'error' => false,
+    //         'message' => 'Movimentação do estoque deletada'
+    //     ], 200);
+    // }
 }
