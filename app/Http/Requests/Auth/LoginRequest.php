@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Categories;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class CreateCategoryRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,8 @@ class CreateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'hex_color' => 'required|string'
+            'email' => 'required|string|email',
+            'password' => 'required|string'
         ];
     }
 
@@ -39,15 +37,13 @@ class CreateCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'O nome é obrigatorio',
-            'name.string' => 'O nome deve ser um texto',
-            'description.required' => 'A descrição é obrigatoria',
-            'description.string' => 'A descrição deve ser um texto',
-            'hex_color.required' => 'A cor é obrigatoria',
-            'hex_color.string' => 'A cor deve ser um texto',
+            'email.required' => 'O email é obrigatorio',
+            'email.string' => 'O email deve ser um texto',
+            'email.email' => 'Informe um email valido',
+            'password.required' => 'A senha é obrigatoria',
+            'password.string' => 'A senha deve ser um texto',
         ];
     }
-
 
     /**
      * Handle a failed validation attempt.

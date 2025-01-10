@@ -40,7 +40,11 @@ class DatabaseSeeder extends Seeder
             });
         });
 
-
+        User::create([
+            'name' => 'daniel',
+            'email' => 'daniel@teste.com',            
+            'password' => 'dandan',
+        ]);
 
     }
 }
