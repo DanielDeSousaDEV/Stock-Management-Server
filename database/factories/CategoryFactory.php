@@ -19,6 +19,19 @@ class CategoryFactory extends Factory
         return [
             'name' => fake()->word(),
             'description' => fake()->sentence(2),
+            'hex_color' => fake()->randomElement([
+                '#EBBAFF',
+                '#BFBAFF',
+                '#BADFFF',
+                '#BAFDFF',
+                '#BAFFDF',
+                '#BFFFBA',
+                '#F8FFBA',
+                '#FFE4BA',
+                '#FFBCBA',
+                '#FFBADF',
+                '#FFBAEE',
+            ])
         ];
     }
 }

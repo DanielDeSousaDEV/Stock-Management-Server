@@ -26,7 +26,8 @@ class CreateCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'description' => 'required|string'
+            'description' => 'required|string',
+            'hex_color' => 'required|string'
         ];
     }
 
@@ -42,6 +43,8 @@ class CreateCategoryRequest extends FormRequest
             'name.string' => 'O nome deve ser um texto',
             'description.required' => 'A descrição é obrigatoria',
             'description.string' => 'A descrição deve ser um texto',
+            'hex_color.required' => 'A cor é obrigatoria',
+            'hex_color.string' => 'A cor deve ser um texto',
         ];
     }
 

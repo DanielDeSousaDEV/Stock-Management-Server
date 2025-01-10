@@ -26,7 +26,8 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => 'nullable|string',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
+            'hex_color' => 'nullable|string'
         ];
     }
 
@@ -40,6 +41,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'name.string' => 'O nome deve ser um texto',
             'description.string' => 'A descrição deve ser um texto',
+            'hex_color.string' => 'A cor deve ser um texto',
         ];
     }
 

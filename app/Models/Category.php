@@ -12,7 +12,8 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'hex_color'
     ];
 
     public function products ():HasMany {
