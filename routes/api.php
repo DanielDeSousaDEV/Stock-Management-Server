@@ -11,6 +11,6 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 
-Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 Route::apiResource('category', CategoryController::class);

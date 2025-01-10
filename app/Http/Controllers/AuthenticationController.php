@@ -43,6 +43,11 @@ class AuthenticationController extends Controller
     {
         try {
             Auth::logout();
+
+            return response([
+                'error' => false,
+                'message' => 'Deslogado com sucesso'
+            ], 200);
         } catch (Exception $e) {
             return response([
                 'error' => true,
