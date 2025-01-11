@@ -21,16 +21,9 @@ class LocationFactory extends Factory
             'description' => fake()->sentence(3),
             'street_name' => fake()->streetName(),
             'number' => fake()->randomNumber(2),
-            'complement' => fake()->randomElement([
-                'Run',
-                'Avenida',
-                'Apartamento',
-                'Vila',
-                'Bloco',
-                'Condomínio',
-            ]),
+            'complement' => fake()->paragraph(1, true),
             'neighborhood' => fake()->words(2, true),
-            'state' => fake()->regionAbbr(),
+            // 'state' => fake()->regionAbbr(),
             'city' => fake()->city(),
             'CEP' => fake()->numerify('#####-###'),
         ];

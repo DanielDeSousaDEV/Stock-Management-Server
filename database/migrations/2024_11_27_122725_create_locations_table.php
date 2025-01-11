@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('number');
             $table->string('complement');
             $table->string('neighborhood');
-            $table->string('state');
+            // $table->string('state');
             $table->string('city');
             $table->string('CEP');
             $table->timestamps();
