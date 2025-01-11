@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\StockMovementsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,10 @@ Route::apiResource('products', ProductsController::class)->only([
     'show'
 ]);
 
-//user e locations
+Route::apiResource('users', UserController::class)->only([
+    'index',
+    'store',
+    'show'
+]);
+
+//locations
