@@ -14,7 +14,7 @@ class StockMovementsController extends Controller
      */
     public function index()
     {
-        $allStockMovements = StockMovement::all();
+        $allStockMovements = StockMovement::with('product', 'location')->get();
 
         return $allStockMovements;
     }

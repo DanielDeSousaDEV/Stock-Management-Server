@@ -23,7 +23,7 @@ class StockMovementFactory extends Factory
                 'output',
                 'adjustment'
             ]),
-            'reason' => fake()->words(3, true),
+            'reason' => fake()->words(10, true),
         ];
     }
 }

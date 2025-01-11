@@ -16,4 +16,8 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout
 
 Route::apiResource('categories', CategoryController::class);
 
-Route::apiResource('stockMovements', StockMovementsController::class);
+Route::apiResource('stockMovements', StockMovementsController::class)->only([
+    'index',
+    'store',
+    'show'
+]);
