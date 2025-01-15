@@ -6,7 +6,6 @@ use App\Http\Controllers\LocationsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\StockMovementsController;
 use App\Http\Controllers\UserController;
-use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,26 +15,28 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 
-Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
-
-Route::apiResource('categories', CategoryController::class);
-
-Route::apiResource('stockMovements', StockMovementsController::class)->only([
-    'index',
-    'store',
-    'show'
-]);
-
-Route::apiResource('products', ProductsController::class)->only([
-    'index',
-    'store',
-    'show'
-]);
-
-Route::apiResource('users', UserController::class)->only([
-    'index',
-    'store',
-    'show'
-]);
-
-Route::apiResource('locations', LocationsController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+    
+    Route::apiResource('categories', CategoryController::class);
+    
+    Route::apiResource('stockMovements', StockMovementsController::class)->only([
+        'index',
+        'store',
+        'show'
+    ]);
+    
+    Route::apiResource('products', ProductsController::class)->only([
+        'index',
+        'store',
+        'show'
+    ]);
+    
+    Route::apiResource('users', UserController::class)->only([
+        'index',
+        'store',
+        'show'
+    ]);
+    
+    Route::apiResource('locations', LocationsController::class);
+});

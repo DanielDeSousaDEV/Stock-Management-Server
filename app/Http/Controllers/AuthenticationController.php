@@ -25,11 +25,12 @@ class AuthenticationController extends Controller
         }
 
         if (Hash::check($validatedData['password'], $user->password)) {
-            Auth::login($user);
+            $token = $user->createToken('auth_token');
 
             return response([
                 'error' => false,
-                'message' => 'Logado com sucesso!'
+                'message' => 'Logado com sucesso!',
+                'token' => $token->plainTextToken
             ], 200);
         }else {
             return response([
@@ -39,10 +40,10 @@ class AuthenticationController extends Controller
         }
     }
 
-    public function logout () 
+    public function logout (Request $request) 
     {
         try {
-            Auth::logout();
+            $request->user()->currentAccessToken()->delete();
 
             return response([
                 'error' => false,

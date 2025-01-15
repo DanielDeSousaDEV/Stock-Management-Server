@@ -26,7 +26,7 @@ class CreateStockMovements extends FormRequest
         return [
             'quantity' => 'required|integer',
             'type' => 'required|string|in:entry,output,adjustment',
-            'reason' => 'required|string',
+            'reason' => 'nullable|string',
             'product_id' => 'required|integer',
             'location_id' => 'required|integer',
         ];
@@ -45,7 +45,6 @@ class CreateStockMovements extends FormRequest
             'type.required' => 'O tipo é obrigatorio',
             'type.string' => 'O tipo deve ser um texto',
             'type.in' => 'O tipo não é valido',
-            'reason.required' => 'A razão é obrigatoria',
             'reason.string' => 'A razão deve ser um texto',
             'product_id.required' => 'O produto é obrigatoria',
             'product_id.integer' => 'O produto deve ser um número inteiro',

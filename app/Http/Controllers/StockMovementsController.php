@@ -14,7 +14,7 @@ class StockMovementsController extends Controller
      */
     public function index()
     {
-        $allStockMovements = StockMovement::with('product', 'location')->get();
+        $allStockMovements = StockMovement::with('product', 'location')->latest()->get();
 
         return $allStockMovements;
     }
@@ -27,7 +27,7 @@ class StockMovementsController extends Controller
         try {
             $createdStockMovement = StockMovement::create($request->validated());
 
-            return $createdStockMovement;
+            return $createdStockMovement->load('location', 'product');
         }catch (Exception $e) {
             return response([
                 'error' => true,
