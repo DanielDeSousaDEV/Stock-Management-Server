@@ -15,6 +15,8 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 
+Route::post('/signUp', [UserController::class, 'store'])->name('signUP');
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
     
@@ -31,12 +33,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'store',
         'show'
     ]);
-    
-    Route::apiResource('users', UserController::class)->only([
-        'index',
-        'store',
-        'show'
-    ]);
-    
+        
     Route::apiResource('locations', LocationsController::class);
 });
