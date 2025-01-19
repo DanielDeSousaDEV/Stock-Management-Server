@@ -17,13 +17,17 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $productName = fake()->words(2);
+
+        $productNameConcat = join(' ', $productName);
+
         return [
-            'name' => fake()->words(2, true),
+            'name' => $productNameConcat,
             'description' => fake()->paragraph(2),
             'price' => fake()->randomFloat(2, 10, 40),
             'quantity' => fake()->numberBetween(50, 60),
             'minimum_quantity' => fake()->numberBetween(50, 60),
-            'img_url' => 'https://placehold.co/600x400?text=' . fake()->word(),
+            'img_url' => 'https://placehold.co/600x400?text=' . $productName[0],
             // 'category_id' => Category::factory()//nop
         ];
     }
