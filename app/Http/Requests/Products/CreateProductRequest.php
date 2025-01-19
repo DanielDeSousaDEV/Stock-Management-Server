@@ -29,6 +29,7 @@ class CreateProductRequest extends FormRequest
             'price' => 'required|number',
             'quantity' => 'required|integer',
             'minimum_quantity' => 'required|integer',
+            'img_url' => 'required|file|extensions:jpg,png',
             'category_id' => 'required|integer',
         ];
     }
@@ -51,6 +52,9 @@ class CreateProductRequest extends FormRequest
             'quantity.integer' => 'A quantidade deve ser um número inteiro',
             'minimum_quantity.required' => 'A quantidade minima é obrigatorio',
             'minimum_quantity.integer' => 'A quantidade minima deve ser um número inteiro',
+            'img_url.required' => 'A imagem é obrigatorio',
+            'img_url.file' => 'A imagem deve ser um arquivo',
+            'img_url.extensions' => 'A imagem não possui uma extensão valida',
             'category_id.required' => 'A categoria é obrigatorio',
             'category_id.integer' => 'A  deve ser um número inteiro',
         ];
