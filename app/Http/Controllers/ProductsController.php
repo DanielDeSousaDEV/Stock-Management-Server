@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+// use App\Http\Requests\Products\CreateProductRequest;
+
 use App\Http\Requests\Products\CreateProductRequest;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -24,8 +27,26 @@ class ProductsController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
+
+        $requestValidated = $request->validated();
+
+        $filename = $requestValidated['image']->hashName();
+
+        if(!Storage::disk('public')->put('products/', $requestValidated['image'])){
+            return response([
+                'error' => true,
+                'message' => 'Não foi possivel guardar a imagem'
+            ], 503);
+        }
+
+        $filepath = 'products/' . $filename;
+
+        $imgUrl = asset(Storage::url($filepath));
+
+        $requestValidated['image'] = $imgUrl;
+
         try {
-            $createdProduct = Product::create($request->validated());
+            $createdProduct = Product::create($requestValidated);
 
             return $createdProduct;
         }catch (Exception $e) {

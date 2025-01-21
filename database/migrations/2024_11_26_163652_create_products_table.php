@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('price', 2);
             $table->integer('quantity');
             $table->integer('minimum_quantity');
-            $table->string('img_url');
+            $table->string('image');
             $table->foreignIdFor(Category::class);
             $table->timestamps();
         });

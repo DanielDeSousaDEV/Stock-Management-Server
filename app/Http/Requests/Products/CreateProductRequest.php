@@ -25,11 +25,11 @@ class CreateProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|number',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric',
             'quantity' => 'required|integer',
             'minimum_quantity' => 'required|integer',
-            'img_url' => 'required|file|extensions:jpg,png',
+            'image' => 'required|file|extensions:jpg,png,jpeg,webp',
             'category_id' => 'required|integer',
         ];
     }
@@ -44,17 +44,16 @@ class CreateProductRequest extends FormRequest
         return [
             'name.required' => 'O nome é obrigatorio',
             'name.string' => 'O nome deve ser um texto',
-            'description.required' => 'A descrição é obrigatorio',
             'description.string' => 'A descrição deve ser um texto',
             'price.required' => 'O preço é obrigatorio',
-            'price.number' => 'O preço deve ser um número',
+            'price.numeric' => 'O preço deve ser um número',
             'quantity.required' => 'A quantidade é obrigatorio',
             'quantity.integer' => 'A quantidade deve ser um número inteiro',
             'minimum_quantity.required' => 'A quantidade minima é obrigatorio',
             'minimum_quantity.integer' => 'A quantidade minima deve ser um número inteiro',
-            'img_url.required' => 'A imagem é obrigatorio',
-            'img_url.file' => 'A imagem deve ser um arquivo',
-            'img_url.extensions' => 'A imagem não possui uma extensão valida',
+            'image.required' => 'A imagem é obrigatoria',
+            'image.file' => 'A imagem deve ser um arquivo',
+            'image.extensions' => 'A imagem não possui uma extensão valida',
             'category_id.required' => 'A categoria é obrigatorio',
             'category_id.integer' => 'A  deve ser um número inteiro',
         ];

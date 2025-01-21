@@ -16,7 +16,7 @@ class Product extends Model
         'price',
         'quantity',
         'minimum_quantity',
-        'img_url',
+        'image',
         'category_id'
     ];
 

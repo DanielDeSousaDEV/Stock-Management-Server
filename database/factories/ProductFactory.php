@@ -27,7 +27,7 @@ class ProductFactory extends Factory
             'price' => fake()->randomFloat(2, 10, 40),
             'quantity' => fake()->numberBetween(50, 60),
             'minimum_quantity' => fake()->numberBetween(50, 60),
-            'img_url' => 'https://placehold.co/600x400?text=' . $productName[0],
+            'image' => 'https://placehold.co/600x400?text=' . $productName[0],
             // 'category_id' => Category::factory()//nop
         ];
     }
