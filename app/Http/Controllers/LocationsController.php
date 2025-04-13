@@ -65,7 +65,7 @@ class LocationsController extends Controller
             return response([
                 'error' => true,
                 'message' => 'Não possui dados para atualizar'
-            ], 404);
+            ], 422);
         }
 
         $location = Location::find($id);

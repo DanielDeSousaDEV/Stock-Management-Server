@@ -24,15 +24,15 @@ class UpdateLocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable|string',
-            'description' => 'nullable|string',
-            'street_name' => 'nullable|string',
-            'number' => 'nullable|integer',
-            'complement' => 'nullable|string',
-            'neighborhood' => 'nullable|string',
+            'name' => 'sometimes|nullable|string',
+            'description' => 'sometimes|nullable|string',
+            'street_name' => 'sometimes|nullable|string',
+            'number' => 'sometimes|nullable|integer',
+            'complement' => 'sometimes|nullable|string',
             // 'state' => 'nullable|string',
-            'city' => 'nullable|string',
-            'CEP' => 'nullable|string|formato_cep',
+            'neighborhood' => 'sometimes|nullable|string',
+            'city' => 'sometimes|nullable|string',
+            'CEP' => 'sometimes|nullable|string|formato_cep',
         ];
     }
     

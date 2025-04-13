@@ -25,7 +25,7 @@ class CreateLocationRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'street_name' => 'required|string',
             'number' => 'required|integer',
             'complement' => 'required|string',
@@ -46,7 +46,6 @@ class CreateLocationRequest extends FormRequest
         return [
             'name.required' => 'O nome é obrigatorio',
             'name.string' => 'O nome deve ser um texto',
-            'description.required' => 'A descrição é obrigatoria',
             'description.string' => 'A descrição deve ser um texto',
             'street_name.required' => 'O nome da rua é obrigatorio',
             'street_name.string' => 'O nome da rua deve ser um texto',

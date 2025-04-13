@@ -17,7 +17,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $allProducts = Product::with('category')->get();
+        $allProducts = Product::with('category')->orderBy('category_id', 'asc')->get();
 
         return $allProducts;
     }
