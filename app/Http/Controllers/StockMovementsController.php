@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StockMovements\CreateStockMovements;
+use App\Models\Product;
 use App\Models\StockMovement;
 use Exception;
 use Illuminate\Http\Request;
@@ -25,6 +26,28 @@ class StockMovementsController extends Controller
     public function store(CreateStockMovements $request)
     {
         try {
+            $product = Product::find($request['product_id']);
+
+            if (!$product) {
+                return response([
+                    'erro' => true,
+                    'message' => 'Não foi possível encontrar o produto'
+                ]);
+            }
+
+            if ($request['type'] === 'entry') {
+                $product->increment('quantity', $request['quantity']);
+            }else if ($request['type'] === 'output') {
+                if ($product->quantity < $request['quantity']) {
+                    return response([
+                        'erro' => true,
+                        'message' => 'Quantidade maior que a disponivel'
+                    ], 403);
+                }
+
+                $product->decrement('quantity', $request['quantity']);
+            }
+
             $createdStockMovement = StockMovement::create($request->validated());
 
             return $createdStockMovement->load('location', 'product');
