@@ -25,12 +25,12 @@ class AuthenticationController extends Controller
         }
 
         if (Hash::check($validatedData['password'], $user->password)) {
-            $token = $user->createToken('auth_token');
+            $token = $user->createToken('auth_token')->plainTextToken;
 
             return response([
                 'error' => false,
                 'message' => 'Logado com sucesso!',
-                'token' => $token->plainTextToken
+                'token' => $token
             ], 200);
         }else {
             return response([
